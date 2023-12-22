@@ -1,6 +1,7 @@
 import pytest
-from StudentsWithDebts import StudentsWithDebts
-from Types import DataType
+from src.StudentsWithDebts import StudentsWithDebts
+from src.Types import DataType
+
 
 class TestStudentsWithDebts:
     @pytest.fixture
@@ -14,15 +15,18 @@ class TestStudentsWithDebts:
         }
         return data
 
-    def test_count_students_with_debts(self, student_data: DataType, capsys) -> None:
+    def test_count_students_with_debts(self,
+                                       student_data: DataType, capsys) -> None:
         # Создаем экземпляр класса StudentsWithDebts с тестовыми данными
         students_with_debts_counter = StudentsWithDebts(student_data)
-        
+
         # Вызываем метод count_students_with_debts, который выводит результат
         students_with_debts_counter.count_students_with_debts()
 
         # Захватываем выведенный текст с помощью capsys
         captured = capsys.readouterr()
 
-        # Проверяем, содержится ли ожидаемая строка в захваченном выводе
-        assert "Студентов, имеющих академические задолжности ровно по двум предметам" in captured.out
+        assert (
+            "Студентов с двумя долгами: 1"
+            in captured.out
+        )

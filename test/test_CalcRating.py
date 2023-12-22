@@ -2,10 +2,13 @@
 from src.Types import DataType
 from src.CalcRating import CalcRating
 import pytest
+
+
 RatingsType = dict[str, float]
 
 
 class TestCalcRating:
+
     @pytest.fixture()
     def input_data(self) -> tuple[DataType, RatingsType]:
         data: DataType = {

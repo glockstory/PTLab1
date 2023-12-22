@@ -14,4 +14,4 @@ class StudentsWithDebts:
             # Check if exactly two subjects have scores < 61
             if subjects_below_threshold == 2:
                 students_with_debts += 1
-        print(f'Студентов, имеющих академические задолжности ровно по двум предметам: {students_with_debts}')
+        print(f'Студентов с двумя долгами: {students_with_debts}')

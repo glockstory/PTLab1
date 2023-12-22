@@ -1,10 +1,12 @@
 import argparse
 import sys
+import os
 
 from CalcRating import CalcRating
 from TextDataReader import TextDataReader
 from XmlDataReader import XMLDataReader
 from StudentsWithDebts import StudentsWithDebts
+from DataReader import DataReader
 
 
 def get_path_from_arguments(args) -> str:
@@ -15,9 +17,20 @@ def get_path_from_arguments(args) -> str:
     return args.path
 
 
+def get_current_reader(path: str) -> DataReader:
+    root, file_extension = os.path.splitext(path)
+    match file_extension:
+        case ".txt":
+            return TextDataReader()
+        case ".xml":
+            return XMLDataReader()
+        case _:
+            raise ValueError("Неподдерживаемый формат")
+
+
 def main():
     path = get_path_from_arguments(sys.argv[1:])
-    reader = XMLDataReader()
+    reader = get_current_reader(path)
     students = reader.read(path)
     print("Students: ", students)
     rating = CalcRating(students).calc()

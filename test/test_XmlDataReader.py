@@ -1,6 +1,7 @@
 import pytest
-from XmlDataReader import XMLDataReader
-from Types import DataType
+from src.XmlDataReader import XMLDataReader
+from src.Types import DataType
+
 
 class TestXMLDataReader:
     @pytest.fixture()
@@ -27,7 +28,7 @@ class TestXMLDataReader:
     def file_path_and_data(self,
                            file_and_data_content: tuple[str, DataType],
                            tmpdir) -> tuple[str, DataType]:
-        p = tmpdir.mkdir("datadir").join("my_data.xml")
+        p = tmpdir.mkdir("datadir").join("data.xml")
         p.write_text(file_and_data_content[0], encoding='utf-8')
         return str(p), file_and_data_content[1]
 
@@ -35,6 +36,3 @@ class TestXMLDataReader:
         xml_reader = XMLDataReader()
         file_content = xml_reader.read(file_path_and_data[0])
         assert file_content == file_path_and_data[1]
-
-# If using this script as a standalone, you can run the tests with:
-# pytest -v your_test_file.py
