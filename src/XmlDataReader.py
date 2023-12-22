@@ -2,9 +2,10 @@ import xml.etree.ElementTree as ET
 from DataReader import DataReader
 from Types import DataType
 
+
 class XMLDataReader(DataReader):
-    
-    def read(self, file_path: str) -> DataType:        
+
+    def read(self, file_path: str) -> DataType:
         tree = ET.parse(file_path)
         root = tree.getroot()
 
@@ -19,5 +20,3 @@ class XMLDataReader(DataReader):
                 subjects.append((subject_name, subject_score))
             student_data[student_name] = subjects
         return student_data
-    
-    
