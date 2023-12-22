@@ -17,4 +17,4 @@
 **Линтер:** Pycodestyle
 
 ## Диаграмма классов:
-![Диаграмма](img/schema.png)
+![Диаграмма](img/img/schema.png)
